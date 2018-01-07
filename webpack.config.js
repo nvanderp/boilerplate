@@ -12,8 +12,16 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react', 'env'] // if you aren't using 'babel-preset-env', then omit the 'env'
+                    presets: ['react', 'env', 'es2015'] // if you aren't using 'babel-preset-env', then omit the 'env'
                 }
+            },
+            // style-loader/css-loader
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
             }
         ]
     }
