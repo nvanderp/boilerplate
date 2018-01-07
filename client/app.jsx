@@ -6,6 +6,7 @@ import store from './store'
 ReactDOM.render(
     <Provider store={store}>
         {/* rest of your app goes here! */}
+        <div>Hello, world!</div>
     </Provider>,
     document.getElementById('app')
   );
