@@ -37,7 +37,7 @@ passport.use(strategy)
 router.get('/', passport.authenticate('google', { scope: 'email' }))
 
 // 2. Client hits this once they have verified with the provider (the callback URL)
-   // `http://localhost:1337/auth/google/verify`
+   // `http://localhost:1337/auth/google/callback`
 router.get('/callback', passport.authenticate('google', {
     successRedirect: '/',
     failureRedirect: '/login'
