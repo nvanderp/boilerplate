@@ -4,8 +4,6 @@ const db = require('../index')
 
 const User = require('./User')
 
-const Test = require('./Test')
-
 // define associations here
 
 module.exports = db
