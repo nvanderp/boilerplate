@@ -10,7 +10,8 @@ const User = db.define('user', {
         allowNull: false
     },
     password: DataTypes.STRING(),
-    salt: DataTypes.STRING()
+    salt: DataTypes.STRING(),
+    googleId: DataTypes.STRING()
 }, {
     hooks: {
         beforeCreate: setSaltAndPassword,

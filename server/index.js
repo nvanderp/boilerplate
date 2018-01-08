@@ -6,6 +6,10 @@ const session = require('express-session')
 const passport = require('passport')
 const User = require('./db/models/User')
 
+// if (process.env.NODE_ENV === 'development') {
+    require('./auth/localSecrets') // this will mutate the process.env object with your secrets.
+// }
+
 const app = express()
 
 // session middleware
