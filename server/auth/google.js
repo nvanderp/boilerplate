@@ -7,7 +7,7 @@ const User = require('../db/models/User')
 const googleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/callback'
+    callbackURL: process.env.GOOGLE_CALLBACK
 }
 
 // configure the strategy with our config object, and write the function that passport will invoke after google sends
@@ -33,14 +33,16 @@ const strategy = new GoogleStrategy(googleConfig, function(token, refreshToken, 
 
 passport.use(strategy)
 
-// 1. Client request to login through Google -- `http://localhost:1337/auth/google`
+// 1. Client request to login through Google -- `http://localhost:3000/auth/google`
 router.get('/', passport.authenticate('google', { scope: 'email' }))
 
 // 2. Client hits this once they have verified with the provider (the callback URL)
-   // `http://localhost:1337/auth/google/callback`
-router.get('/callback', passport.authenticate('google', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}))
+   // `http://localhost:3000/auth/google/callback`
+router.get('/callback', passport.authenticate('google', { failureRedirect: '/' }),      // should this be auth/google/callback? I don't believe so
+    (req, res) => {
+        // res.redirect('/')
+        res.send('Google authentication complete!')
+    }
+)
 
 module.exports = router
